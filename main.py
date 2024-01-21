@@ -6,7 +6,21 @@ from langchain.llms import GooglePalm
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI()
+
+origins = [
+   "http://localhost:3000"
+]
+app.add_middleware(
+   CORSMiddleware,
+   allow_origins=origins,
+   allow_credentials=True,
+   allow_methods=["*"],
+   allow_headers=["*"],
+)
+
 
 API_KEY= "AIzaSyA6fYVkYWamANNjKIMwrdEJ9w0fqsmGU98"
 os.environ['GOOGLE_API_KEY'] = API_KEY
